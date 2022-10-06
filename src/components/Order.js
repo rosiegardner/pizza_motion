@@ -44,6 +44,11 @@ const buttonVariants = {
 }
 
 const Order = ({ pizza }) => {
+
+  // useEffect lifecycle hook, array with only setShowModal as dep 
+  // useEffect(() => {
+  //   setTimeout(() => setShowModal(true), 5000);
+  // }, [setShowModal]);
  
 
   return (
