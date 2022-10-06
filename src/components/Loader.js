@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useCycle } from 'framer-motion';
 
 const loaderVariants = {
   animationOne: {
@@ -8,7 +8,7 @@ const loaderVariants = {
     transition: {
       x: {
         repeat: Infinity,
-        duration: 0.8
+        duration: 0.5
       },
       y: {
         repeat: Infinity,
@@ -16,17 +16,29 @@ const loaderVariants = {
         ease: 'easeOut'
       }
     }
+  },
+  animationTwo: {
+    y: [0, -40],
+    x: 0,
+    transition: {
+      y: {
+        repeat: Infinity,
+        duration: 0.40,
+        ease: 'easeOut'
+      }
+    }
   }
 }
 const Loader = () => {
+  const [animation, cycleAnimation] = useCycle("animationOne", "animationTwo");
   return (
     <React.Fragment>
       <motion.div className="loader"
       variants={loaderVariants}
-      animate="animationOne"
+      animate={animation}
       >
-
       </motion.div>
+      <div onClick={() => cycleAnimation()}>Cycle Loader</div>
     </React.Fragment>
   )
 }
