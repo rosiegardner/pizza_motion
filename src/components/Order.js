@@ -17,6 +17,12 @@ const containerVariants = {
       when: "beforeChildren",
       staggerChildren: 0.4
     }
+  }, 
+  exit: {
+    x: '-100vw',
+    transition: {
+      ease: 'easeInOut'
+    }
   }
 }
 
@@ -29,12 +35,23 @@ const childVariants = {
   }
 }
 
+const buttonVariants = {
+  hover: {
+    scale: 1.1, 
+    textShadow: "0px 0px 8px rgb(255,255,255)",
+    boxShadow: "0px 0px 8px rgb(255,255,255)",
+  }
+}
+
 const Order = ({ pizza }) => {
+ 
+
   return (
     <motion.div className="container order"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
       <h2>Thank you for your order</h2>
       <motion.p variants={childVariants}>You ordered a {pizza.base} pizza with:</motion.p>
@@ -44,10 +61,8 @@ const Order = ({ pizza }) => {
 
       <Link to="/">
       <motion.button
-        whileHover={{ 
-        scale: 1.1, 
-        textShadow: "0px 0px 8px rgb(255,255,255)",
-        boxShadow: "0px 0px 8px rgb(255,255,255)" }}
+        variants={buttonVariants}
+        whileHover="hover"
       >
         Back to Home
       </motion.button>

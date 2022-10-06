@@ -5,6 +5,7 @@ import Home from './Home';
 import Base from './Base';
 import Toppings from './Toppings';
 import Order from './Order';
+import { AnimatePresence } from 'framer-motion';
 
 
 
@@ -37,15 +38,17 @@ function App() {
   return (
     <Router>
       <Header />
-      <Routes>
-        <Route path="/base"
-          element={ <Base addBase={addBase} pizza={pizza} /> } />
-        <Route path="/toppings"
-          element={ <Toppings addTopping={addTopping} pizza={pizza} /> } />
-        <Route path="/order"
-          element={ <Order pizza={pizza} /> }/>
-        <Route path="/" element={ <Home /> } />
-      </Routes>
+      <AnimatePresence wait>
+        <Routes>
+          <Route path="/base"
+            element={ <Base addBase={addBase} pizza={pizza} /> } />
+          <Route path="/toppings"
+            element={ <Toppings addTopping={addTopping} pizza={pizza} /> } />
+          <Route path="/order"
+            element={ <Order pizza={pizza} /> }/>
+          <Route path="/" element={ <Home /> } />
+        </Routes>
+      </AnimatePresence>
     </Router>
     
    
